@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3a35a0c-6cce-45ce-9a90-f09c5719ffa6" name="Changes" comment="" />
+    <list default="true" id="a3a35a0c-6cce-45ce-9a90-f09c5719ffa6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/sia/tacocloud/web/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/taco-cloud.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sia/tacocloud/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sia/tacocloud/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sia/tacocloud/Taco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sia/tacocloud/Taco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sia/tacocloud/TacoOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sia/tacocloud/TacoOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sia/tacocloud/web/DesignTacoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sia/tacocloud/web/DesignTacoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sia/tacocloud/web/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sia/tacocloud/web/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/design.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/design.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/orderForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/orderForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sia/tacocloud/HomeControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sia/tacocloud/HomeControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/images/TacoCloud.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/images/TacoCloud.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,13 +43,11 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2MyJqMuhMcpnRN4vrAgGimbflKC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -49,12 +63,16 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/Марина/IdeaProjects/taco-cloud",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.28965518",
     "spring.configuration.checksum": "b67b4f800f34f037917509ef0ceee06d",
     "vue.rearranger.settings.migration": "true"
   }
@@ -67,7 +85,7 @@
       <recent name="sia.tacocloud" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.TacoCloudApplication">
+  <component name="RunManager" selected="JUnit.HomeControllerTest">
     <configuration name="HomeControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taco-cloud" />
       <extension name="coverage">
@@ -109,6 +127,8 @@
       <updated>1678734082783</updated>
       <workItem from="1678734084094" duration="83000" />
       <workItem from="1678819546955" duration="2179000" />
+      <workItem from="1680027917023" duration="923000" />
+      <workItem from="1680436356481" duration="5845000" />
     </task>
     <task id="LOCAL-00001" summary="Разработка приложения Spring">
       <created>1678821715603</created>
@@ -117,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678821715603</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Разработка приложения Spring">
+      <created>1680027965469</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680027965469</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

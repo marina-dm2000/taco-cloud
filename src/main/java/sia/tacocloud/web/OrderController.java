@@ -1,7 +1,9 @@
 package sia.tacocloud.web;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import sia.tacocloud.Taco;
@@ -18,7 +20,11 @@ public class OrderController {
     }
 
     @PostMapping
-    public String proccessOrder(TacoOrder order, SessionStatus sessionStatus) {
+    public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus sessionStatus) {
+        if (errors.hasErrors()) {
+            return "orderForm";
+        }
+
         log.info("Order submitted: {}", order);
         // когда пользователь создаст тако,
         // сеанс будет очищен и готов к приему нового заказа
