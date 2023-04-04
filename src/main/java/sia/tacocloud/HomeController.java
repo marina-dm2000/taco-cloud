@@ -1,3 +1,4 @@
+/*
 package sia.tacocloud;
 
 import org.springframework.stereotype.Controller;
@@ -10,3 +11,4 @@ public class HomeController {
         return "home"; // Возвращает имя представления
     }
 }
+*/
