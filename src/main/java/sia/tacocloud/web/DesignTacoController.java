@@ -16,10 +16,10 @@ import sia.tacocloud.Ingredient.Type;
 import sia.tacocloud.Taco;
 import sia.tacocloud.TacoOrder;
 
-@Slf4j
+@Slf4j // журналирование
 @Controller
-@RequestMapping("/design")
-@SessionAttributes("tacoOrder")
+@RequestMapping("/design") // класс обрабатывает запросы с путем design
+@SessionAttributes("tacoOrder") // класс tacoOrder поддерживается на уровне сеанса
 public class DesignTacoController {
     @ModelAttribute
     public void addIngredientsModel(Model model) {
@@ -36,12 +36,20 @@ public class DesignTacoController {
                 new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE)
         );
 
+        /*
+        * Фильтруем ингредиенты по типам, используя метод filterByType()
+        * */
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {
+            // добавляет список ингредиентов в модель
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
     }
 
+    /**
+     * Хранит состояние собираемого заказа
+     * @return новый заказ
+     */
     @ModelAttribute(name = "tacoOrder")
     public TacoOrder order() {
         return new TacoOrder();
@@ -57,18 +65,33 @@ public class DesignTacoController {
         return "design";
     }
 
+    /**
+     * Метод для обработки запроса с путем design
+     * @param taco тако с проверкой корректности введенных данных
+     * @param errors проверяет наличие ошибок
+     * @param tacoOrder используется tacoOrder, который был помещен в модель методом order()
+     * @return имя представления
+     */
     @PostMapping
     public String processTaco(@Valid Taco taco, Errors errors, @ModelAttribute TacoOrder tacoOrder) {
+        // если найдены ошибки в заполнении форму, возвращает имя представления design
         if (errors.hasErrors()) {
             return "design";
         }
 
+        // добавление тако в заказ
         tacoOrder.addTaco(taco);
-        log.info("Proccessing taco: {}", taco);
+        log.info("Processing taco: {}", taco);
 
         return "redirect:/orders/current";
     }
 
+    /**
+     * Фильтрует ингредиенты по типу
+     * @param ingredients список ингредиентов
+     * @param type тип ингредиентов, по которому необходима фильтрация
+     * @return список ингредиентов с типом type
+     */
     private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
         return ingredients
                 .stream()

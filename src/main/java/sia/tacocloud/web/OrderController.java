@@ -9,16 +9,30 @@ import org.springframework.web.bind.support.SessionStatus;
 import sia.tacocloud.Taco;
 import sia.tacocloud.TacoOrder;
 
+/**
+ * Контроллер, представляющий форму заказа тако
+ */
 @Slf4j
 @Controller
 @RequestMapping("/orders")
 @SessionAttributes("tacoOrder")
 public class OrderController {
+    /**
+     * Обрабатывает запросы с путем /orders/current
+     * @return
+     */
     @GetMapping("/current")
     public String orderForm() {
         return "orderForm";
     }
 
+    /**
+     * Метод для обработки запроса с путем orders
+     * @param order заказ с проверкой корректности введенных данных
+     * @param errors проверяет наличие ошибок
+     * @param sessionStatus статус текущей сессии
+     * @return имя представления
+     */
     @PostMapping
     public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus sessionStatus) {
         if (errors.hasErrors()) {
@@ -30,6 +44,7 @@ public class OrderController {
         // сеанс будет очищен и готов к приему нового заказа
         sessionStatus.setComplete();
 
+        // перенаправляет на домашнюю страницу
         return "redirect:/";
     }
 }

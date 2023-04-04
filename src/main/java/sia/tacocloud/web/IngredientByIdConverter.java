@@ -8,10 +8,18 @@ import sia.tacocloud.Ingredient.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Класс создается как bean-компонент в контексте приложения Spring
+ *
+ * Преобразование строк в объекты Ingredient
+ */
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
-    private Map<String, Ingredient> ingredientMap = new HashMap<>();
+    private Map<String, Ingredient> ingredientMap = new HashMap<>(); // список всех ингредиентов
 
+    /**
+     * Добавляет ингредиенты в словарь для поиска по id
+     */
     public IngredientByIdConverter() {
         ingredientMap.put("FLTO", new Ingredient("FLTO", "Flour Tortilla", Type.WRAP));
         ingredientMap.put("COTO", new Ingredient("COTO", "Corn Tortilla", Type.WRAP));
@@ -25,6 +33,12 @@ public class IngredientByIdConverter implements Converter<String, Ingredient> {
         ingredientMap.put("SRCR", new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
     }
 
+    /**
+     * Получает значение типа String и преобразует его в Ingredient
+     *
+     * @param id искомого ингредиента
+     * @return ингредиент по его id
+     */
     @Override
     public Ingredient convert(String id) {
         return ingredientMap.get(id);

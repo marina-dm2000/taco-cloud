@@ -11,8 +11,8 @@ import java.util.List;
  */
 @Data
 public class Taco {
-    @NotNull
-    @Size(min = 5, message = "Name must be at least 5 characters long")
+    @NotNull // непустое поле
+    @Size(min = 5, message = "Name must be at least 5 characters long") // минимальный размер поля 5
     private String name;
 
     @NotNull
