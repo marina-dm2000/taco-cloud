@@ -19,7 +19,7 @@ import sia.tacocloud.TacoOrder;
 public class OrderController {
     /**
      * Обрабатывает запросы с путем /orders/current
-     * @return
+     * @return имя нового представления
      */
     @GetMapping("/current")
     public String orderForm() {

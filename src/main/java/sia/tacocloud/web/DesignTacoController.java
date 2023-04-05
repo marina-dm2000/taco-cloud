@@ -2,6 +2,7 @@ package sia.tacocloud.web;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,15 +16,23 @@ import java.util.stream.Collectors;
 import sia.tacocloud.Ingredient.Type;
 import sia.tacocloud.Taco;
 import sia.tacocloud.TacoOrder;
+import sia.tacocloud.data.IngredientRepository;
 
 @Slf4j // журналирование
 @Controller
 @RequestMapping("/design") // класс обрабатывает запросы с путем design
 @SessionAttributes("tacoOrder") // класс tacoOrder поддерживается на уровне сеанса
 public class DesignTacoController {
+    private final IngredientRepository ingredientRepo;
+
+    @Autowired
+    public DesignTacoController(IngredientRepository ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
+    }
+
     @ModelAttribute
     public void addIngredientsModel(Model model) {
-        List<Ingredient> ingredients = Arrays.asList(
+        /*List<Ingredient> ingredients = Arrays.asList(
                 new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
                 new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
                 new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
@@ -34,7 +43,10 @@ public class DesignTacoController {
                 new Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE),
                 new Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE),
                 new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE)
-        );
+        );*/
+
+        // извлекает все ингредиенты из БД
+        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
 
         /*
         * Фильтруем ингредиенты по типам, используя метод filterByType()
@@ -42,7 +54,7 @@ public class DesignTacoController {
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {
             // добавляет список ингредиентов в модель
-            model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
+            model.addAttribute(type.toString().toLowerCase(), filterByType((List<Ingredient>) ingredients, type));
         }
     }
 
