@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import sia.tacocloud.Taco;
 import sia.tacocloud.TacoOrder;
+import sia.tacocloud.data.OrderRepository;
 
 /**
  * Контроллер, представляющий форму заказа тако
@@ -17,6 +18,12 @@ import sia.tacocloud.TacoOrder;
 @RequestMapping("/orders")
 @SessionAttributes("tacoOrder")
 public class OrderController {
+    private OrderRepository orderRepo;
+
+    public OrderController(OrderRepository orderRepo) {
+        this.orderRepo = orderRepo;
+    }
+
     /**
      * Обрабатывает запросы с путем /orders/current
      * @return имя нового представления
@@ -39,7 +46,7 @@ public class OrderController {
             return "orderForm";
         }
 
-        log.info("Order submitted: {}", order);
+        orderRepo.save(order);
         // когда пользователь создаст тако,
         // сеанс будет очищен и готов к приему нового заказа
         sessionStatus.setComplete();
