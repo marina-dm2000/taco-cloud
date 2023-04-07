@@ -1,15 +1,23 @@
 package sia.tacocloud;
 
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.*;
 
 /**
  * Класс, представляющий ингредиенты тако
  */
 @Data
+@Entity
+@AllArgsConstructor // упрощает создание объекта со всеми инициализированными свойствами
+// генерирует приватный конструктор без параметров
+@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
+@RequiredArgsConstructor
 public class Ingredient {
-    private final String id;
-    private final String name;
-    private final Type type;
+    @Id
+    private String id;
+    private String name;
+    private Type type;
 
     public enum Type {
         WRAP,

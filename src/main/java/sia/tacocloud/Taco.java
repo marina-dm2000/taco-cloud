@@ -1,9 +1,11 @@
 package sia.tacocloud;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +13,11 @@ import java.util.List;
  * Класс, представляяющий рецепт
  */
 @Data
+@Entity
 public class Taco {
+    @Id
+    // На создание значения полагаемся на БД
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     // дата создания тако
     private Date createdAt = new Date();
@@ -22,5 +28,12 @@ public class Taco {
 
     @NotNull
     @Size(min = 1, message = "You must choose at least 1 ingredient")
-    private List<Ingredient> ingredients;
+    // объект Taco может включать в список несколько оъектов Ingredient,
+    // один объект Ingredient может быть частью списков в нескольких объектах Taco
+    @ManyToMany
+    private List<Ingredient> ingredients = new ArrayList<>();
+
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
+    }
 }
