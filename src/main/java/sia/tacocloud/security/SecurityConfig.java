@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -16,15 +15,14 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-public class SecurityConfig implements UserDetailsService {
+public class SecurityConfig {
+    /**
+     * bean-компонент, который используется при создании новых пользователей и при аутентификации
+     * @return BCryptPasswordEncoder - один из средств шифрования паролей
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
     }
 
     /**
@@ -34,12 +32,12 @@ public class SecurityConfig implements UserDetailsService {
      * @param encoder
      * @return
      */
-    /*@Bean
+    @Bean
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
         List<UserDetails> usersList = new ArrayList<>();
         usersList.add(new User(
                 "marina", encoder.encode("876782"),
                 Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
         return new InMemoryUserDetailsManager(usersList);
-    }*/
+    }
 }
