@@ -72,14 +72,19 @@
 		  th:errors="*{ccExpiration}">CC Expiration Error</span>
 	<br/>
 
-	<label for="ccCVV">CVV: </label>
-	<input type="text" id="ccCVV" th:field="*{ccCVV}">
+	<label for="ccCvv">CVV: </label>
+	<input type="text" id="ccCvv" th:field="*{ccCvv}">
 	<span class="validationError"
-		  th:if="${#fields.hasErrors('ccCVV')}"
-		  th:errors="*{ccCVV}">CCV Error</span>
+		  th:if="${#fields.hasErrors('ccCvv')}"
+		  th:errors="*{ccCvv}">CCV Error</span>
 	<br/>
 
-	<input type="submit" value="Submit Order">
+	<input type="submit" value="Submit Order"/>
+	<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+</form>
+<form method="POST" th:action="@{/logout}">
+	<input type="submit" value="Logout"/>
+	<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 </form>
 </body>
 </html>

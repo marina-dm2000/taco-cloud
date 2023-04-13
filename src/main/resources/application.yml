@@ -6,3 +6,7 @@ spring:
     username: "marina"
     password: "28052000"
     driver-class-name: org.postgresql.Driver
+logging:
+  level:
+    org:
+      springframework: DEBUG

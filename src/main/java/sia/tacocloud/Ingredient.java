@@ -1,9 +1,6 @@
 package sia.tacocloud;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 /**
@@ -11,6 +8,7 @@ import lombok.*;
  */
 @Data
 @Entity
+@Table(name = "ingredient", schema = "public")
 @AllArgsConstructor // упрощает создание объекта со всеми инициализированными свойствами
 // генерирует защищенный конструктор без параметров
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

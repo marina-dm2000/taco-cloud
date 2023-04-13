@@ -17,10 +17,11 @@ import java.util.List;
  */
 @Data
 @Entity
+@Table(name = "taco_order", schema = "public")
 public class TacoOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // дата создания заказа
     private Date placedAt = new Date();
@@ -45,8 +46,7 @@ public class TacoOrder implements Serializable {
 
     // проверка, что значение содержит ровно 3 цифры
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
-
-    private String ccCVV;
+    private String ccCvv;
 
     // все тако в списке относятся к одному заказу.
     // При удалении заказа все связанные с ним тако тоже будут удалены

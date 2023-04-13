@@ -17,6 +17,7 @@ import sia.tacocloud.Ingredient.Type;
 import sia.tacocloud.Taco;
 import sia.tacocloud.TacoOrder;
 import sia.tacocloud.data.IngredientRepository;
+import sia.tacocloud.data.TacoRepository;
 
 @Slf4j // журналирование
 @Controller
@@ -24,6 +25,8 @@ import sia.tacocloud.data.IngredientRepository;
 @SessionAttributes("tacoOrder") // класс tacoOrder поддерживается на уровне сеанса
 public class DesignTacoController {
     private final IngredientRepository ingredientRepo;
+    @Autowired
+    private TacoRepository tacoRepo;
 
     @Autowired
     public DesignTacoController(IngredientRepository ingredientRepo) {
@@ -81,6 +84,7 @@ public class DesignTacoController {
 
         // добавление тако в заказ
         tacoOrder.addTaco(taco);
+        tacoRepo.save(taco);
         log.info("Processing taco: {}", taco);
 
         return "redirect:/orders/current";

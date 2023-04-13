@@ -14,10 +14,11 @@ import java.util.List;
  */
 @Data
 @Entity
+@Table(name = "taco", schema = "public")
 public class Taco {
     @Id
     // На создание значения полагаемся на БД
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // дата создания тако
     private Date createdAt = new Date();
