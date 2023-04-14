@@ -51,7 +51,7 @@ public class TacoOrder implements Serializable {
     // все тако в списке относятся к одному заказу.
     // При удалении заказа все связанные с ним тако тоже будут удалены
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Taco> tacos = new ArrayList<>();
+    private transient List<Taco> tacos = new ArrayList<>();
 
     public void addTaco(Taco taco) {
         this.tacos.add(taco);

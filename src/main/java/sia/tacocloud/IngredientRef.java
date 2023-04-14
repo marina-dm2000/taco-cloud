@@ -1,13 +1,30 @@
 package sia.tacocloud;
 
-import jakarta.persistence.Table;
-import lombok.Data;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
-/**
- * Класс, определяющий связь между Taco и Ingredient
- */
-@Data
-@Table(name = "ingredient_ref", schema = "public")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name = "ingredient_ref")
 public class IngredientRef {
-    private final String ingredient;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ingredient", nullable = false)
+    private Ingredient ingredient;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "taco", nullable = false)
+    private Taco taco;
+
 }

@@ -9,7 +9,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import sia.tacocloud.Ingredient;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,8 +83,6 @@ public class DesignTacoController {
 
         // добавление тако в заказ
         tacoOrder.addTaco(taco);
-        tacoRepo.save(taco);
-        log.info("Processing taco: {}", taco);
 
         return "redirect:/orders/current";
     }

@@ -32,7 +32,11 @@ public class Taco {
     // объект Taco может включать в список несколько оъектов Ingredient,
     // один объект Ingredient может быть частью списков в нескольких объектах Taco
     @ManyToMany
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private transient List<Ingredient> ingredients = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "taco_order")
+    private TacoOrder tacoOrder;
 
     public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);

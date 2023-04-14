@@ -19,15 +19,14 @@ alter table public.taco_order
 
 create table public.taco
 (
-    id             bigint generated always as identity
+    id         bigint generated always as identity
         constraint taco_pk
             primary key,
-    name           varchar(50) not null,
-    taco_order     bigint      not null
+    name       varchar(50) not null,
+    taco_order bigint
         constraint "taco_Taco_Order_id_fk"
             references public.taco_order,
-    taco_order_key bigint      not null,
-    created_at     timestamp   not null
+    created_at timestamp   not null
 );
 
 alter table public.taco
@@ -50,8 +49,12 @@ create table public.ingredient_ref
     ingredient varchar(4) not null
         constraint "Ingredient_Ref_Ingredient_id_fk"
             references public.ingredient,
-    taco       bigint     not null,
-    taco_key   bigint     not null
+    taco       bigint     not null
+        constraint ingredient_ref_taco_id_fk
+            references public.taco,
+    id         bigint generated always as identity
+        constraint ingredient_ref_pk
+            primary key
 );
 
 alter table public.ingredient_ref
@@ -74,4 +77,3 @@ create table public."user"
 
 alter table public."user"
     owner to marina;
-

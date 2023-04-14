@@ -2,6 +2,7 @@ package sia.tacocloud.web;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import sia.tacocloud.Taco;
 import sia.tacocloud.TacoOrder;
 import sia.tacocloud.data.OrderRepository;
+import sia.tacocloud.data.TacoRepository;
 
 /**
  * Контроллер, представляющий форму заказа тако
@@ -19,6 +21,8 @@ import sia.tacocloud.data.OrderRepository;
 @SessionAttributes("tacoOrder")
 public class OrderController {
     private OrderRepository orderRepo;
+    @Autowired
+    private TacoRepository tacoRepo;
 
     public OrderController(OrderRepository orderRepo) {
         this.orderRepo = orderRepo;
@@ -26,6 +30,7 @@ public class OrderController {
 
     /**
      * Обрабатывает запросы с путем /orders/current
+     *
      * @return имя нового представления
      */
     @GetMapping("/current")
@@ -35,8 +40,9 @@ public class OrderController {
 
     /**
      * Метод для обработки запроса с путем orders
-     * @param order заказ с проверкой корректности введенных данных
-     * @param errors проверяет наличие ошибок
+     *
+     * @param order         заказ с проверкой корректности введенных данных
+     * @param errors        проверяет наличие ошибок
      * @param sessionStatus статус текущей сессии
      * @return имя представления
      */
@@ -47,6 +53,8 @@ public class OrderController {
         }
 
         orderRepo.save(order);
+        order.getTacos().forEach(taco -> {taco.setTacoOrder(order);});
+        tacoRepo.saveAll(order.getTacos());
         // когда пользователь создаст тако,
         // сеанс будет очищен и готов к приему нового заказа
         sessionStatus.setComplete();
