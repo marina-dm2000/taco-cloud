@@ -20,6 +20,7 @@ import sia.tacocloud.data.TacoRepository;
 @RequestMapping("/orders")
 @SessionAttributes("tacoOrder")
 public class OrderController {
+    @Autowired
     private OrderRepository orderRepo;
     @Autowired
     private TacoRepository tacoRepo;
@@ -52,8 +53,11 @@ public class OrderController {
             return "orderForm";
         }
 
+        // чтобы в БД у тако указывался номер заказа, необходимо сначала сохранить заказ со всеми тако,
         orderRepo.save(order);
+        // получить все тако в заказе
         order.getTacos().forEach(taco -> {taco.setTacoOrder(order);});
+        // затем каждый тако из заказа сохранить в БД
         tacoRepo.saveAll(order.getTacos());
         // когда пользователь создаст тако,
         // сеанс будет очищен и готов к приему нового заказа
