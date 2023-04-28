@@ -1,3 +1,33 @@
+create table public.ingredient
+(
+    id   varchar(4)  not null
+        constraint ingredient_pk
+            primary key,
+    name varchar(25) not null,
+    type varchar(10) not null
+);
+
+alter table public.ingredient
+    owner to marina;
+
+create table public."user"
+(
+    id           bigint generated always as identity
+        constraint user_pk
+            primary key,
+    username     varchar(50)  not null,
+    password     varchar(255) not null,
+    fullname     varchar(50)  not null,
+    street       varchar(50)  not null,
+    city         varchar(50)  not null,
+    state        varchar(2)   not null,
+    zip          varchar(10)  not null,
+    phone_number varchar(20)  not null
+);
+
+alter table public."user"
+    owner to marina;
+
 create table public.taco_order
 (
     id              bigint generated always as identity
@@ -11,7 +41,10 @@ create table public.taco_order
     cc_number       varchar(16) not null,
     cc_expiration   varchar(5)  not null,
     cc_cvv          varchar(3)  not null,
-    placed_at       timestamp   not null
+    placed_at       timestamp   not null,
+    "user"          bigint
+        constraint taco_order_user_id_fk
+            references public."user"
 );
 
 alter table public.taco_order
@@ -32,18 +65,6 @@ create table public.taco
 alter table public.taco
     owner to marina;
 
-create table public.ingredient
-(
-    id   varchar(4)  not null
-        constraint ingredient_pk
-            primary key,
-    name varchar(25) not null,
-    type varchar(10) not null
-);
-
-alter table public.ingredient
-    owner to marina;
-
 create table public.ingredient_ref
 (
     ingredient varchar(4) not null
@@ -60,20 +81,3 @@ create table public.ingredient_ref
 alter table public.ingredient_ref
     owner to marina;
 
-create table public."user"
-(
-    id           bigint generated always as identity
-        constraint user_pk
-            primary key,
-    username     varchar(50)  not null,
-    password     varchar(255) not null,
-    fullname     varchar(50)  not null,
-    street       varchar(50)  not null,
-    city         varchar(50)  not null,
-    state        varchar(2)   not null,
-    zip          varchar(10)  not null,
-    phone_number varchar(20)  not null
-);
-
-alter table public."user"
-    owner to marina;

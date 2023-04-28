@@ -53,6 +53,10 @@ public class TacoOrder implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private transient List<Taco> tacos = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "\"user\"")
+    private User user;
+
     public void addTaco(Taco taco) {
         this.tacos.add(taco);
     }

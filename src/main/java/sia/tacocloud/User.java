@@ -9,12 +9,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
-@Table(name = "user", schema = "public")
+@Table(name = "\"user\"", schema = "public")
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @RequiredArgsConstructor
 public class User implements UserDetails {
@@ -55,4 +57,10 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    // у одного пользователя может быть несколько заказов,
+    // но у одного заказа может быть только один пользователь
+    // При удалении пользователя все связанные с ним заказы тоже будут удалены
+    //@OneToMany(cascade = CascadeType.ALL)
+    //private transient List<TacoOrder> orders = new ArrayList<>();
 }

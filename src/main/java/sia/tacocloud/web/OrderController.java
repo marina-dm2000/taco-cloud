@@ -3,12 +3,16 @@ package sia.tacocloud.web;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import sia.tacocloud.Taco;
 import sia.tacocloud.TacoOrder;
+import sia.tacocloud.User;
 import sia.tacocloud.data.OrderRepository;
 import sia.tacocloud.data.TacoRepository;
 
@@ -48,15 +52,31 @@ public class OrderController {
      * @return имя представления
      */
     @PostMapping
-    public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus sessionStatus) {
+    public String processOrder(@Valid TacoOrder order, Errors errors,
+                               SessionStatus sessionStatus,
+                               @AuthenticationPrincipal User user /* получаем текущего пользователя */) {
         if (errors.hasErrors()) {
             return "orderForm";
         }
 
+        //
+
+        /**
+         * Этот способ получения текущего пользователя можно использовать
+         * в любом месте приложения, а не только в методах контроллеров.
+         *
+         * User user = (User) SecurityContextHolder.getContext()
+         * .getAuthentication()
+         * .getPrincipal();
+         */
+
+        order.setUser(user);
         // чтобы в БД у тако указывался номер заказа, необходимо сначала сохранить заказ со всеми тако,
         orderRepo.save(order);
         // получить все тако в заказе
-        order.getTacos().forEach(taco -> {taco.setTacoOrder(order);});
+        order.getTacos().forEach(taco -> {
+            taco.setTacoOrder(order);
+        });
         // затем каждый тако из заказа сохранить в БД
         tacoRepo.saveAll(order.getTacos());
         // когда пользователь создаст тако,

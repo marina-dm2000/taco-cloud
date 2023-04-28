@@ -1,6 +1,10 @@
 package sia.tacocloud.data;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import sia.tacocloud.TacoOrder;
 
 import java.util.List;
@@ -11,4 +15,15 @@ import java.util.List;
  * Второй параметр - тип поля идентификатора хранимого объекта
  */
 public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
+    @PreAuthorize("hasRole('ADMIN')")
+    @Modifying
+    @Query(
+            value =
+                    "delete from TacoOrder"
+    )
+    void deleteAllOrders();
+
+    @PostAuthorize("hasRole('ADMIN') ||" +
+            "returnObject.user.username == authentication.name")
+    TacoOrder getTacoOrderById(long id);
 }
