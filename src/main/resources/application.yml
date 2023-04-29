@@ -18,10 +18,10 @@ logging:
     org.springframework.security: DEBUG
 server:
   port: 8443
-  ssl:
-    key-store: classpath:mykeys.jks
-    key-store-password: 876782
-    key-password: 876782
+#  ssl:
+#    key-store: classpath:mykeys.jks
+#    key-store-password: 876782
+#    key-password: 876782
 # можно использовать одни свойства внутри других с помощью маркеров-заполнителей ${}
 greeting:
   welcome: ${spring.application.name}
