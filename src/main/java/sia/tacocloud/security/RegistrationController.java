@@ -10,8 +10,8 @@ import sia.tacocloud.data.UserRepository;
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
-    private UserRepository userRepo;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepo;
+    private final PasswordEncoder passwordEncoder;
 
     public RegistrationController(UserRepository userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;

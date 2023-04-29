@@ -37,8 +37,4 @@ public class Taco {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "taco_order")
     private TacoOrder tacoOrder;
-
-    public void addIngredient(Ingredient ingredient) {
-        this.ingredients.add(ingredient);
-    }
 }

@@ -6,12 +6,22 @@ spring:
     username: "marina"
     password: "28052000"
     driver-class-name: org.postgresql.Driver
-    hikari:
-      schema: schema.sql
-      data-source-class-name: data.sql
-#logging:
-#  level:
-#    org:
-#      springframework: DEBUG
+taco:
+  orders:
+    pageSize: 10
+logging:
+  file:
+    path: /var/logs/
+    name: TacoCloud.log
+  level:
+    root: WARN
+    org.springframework.security: DEBUG
 server:
-  port: 9090
+  port: 8443
+  ssl:
+    key-store: classpath:mykeys.jks
+    key-store-password: 876782
+    key-password: 876782
+# можно использовать одни свойства внутри других с помощью маркеров-заполнителей ${}
+greeting:
+  welcome: ${spring.application.name}
