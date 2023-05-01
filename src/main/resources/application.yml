@@ -6,6 +6,9 @@ spring:
     username: "marina"
     password: "28052000"
     driver-class-name: org.postgresql.Driver
+  data:
+    rest:
+      base-path: /data-api
 taco:
   orders:
     pageSize: 10
@@ -16,8 +19,8 @@ logging:
   level:
     root: WARN
     org.springframework.security: DEBUG
-server:
-  port: 8443
+#server:
+#  port: 8443
 #  ssl:
 #    key-store: classpath:mykeys.jks
 #    key-store-password: 876782
