@@ -1,0 +1,8 @@
+server:
+  port: 9000
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/tacocloud"
+    username: "marina"
+    password: "28052000"
+    driver-class-name: org.postgresql.Driver
