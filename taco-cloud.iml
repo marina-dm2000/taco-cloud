@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="entityManagerFactory" value="ab998ce6-b2b9-470d-8b04-7065e7bb7f7f" />
+          <factory-entry name="entityManagerFactory" value="d9a8716b-ec0a-4286-b1df-6f66786df72b" />
           <factory-entry name="taco-cloud" value="d9a8716b-ec0a-4286-b1df-6f66786df72b" />
         </datasource-mapping>
         <naming-strategy-map />
